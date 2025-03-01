@@ -258,11 +258,16 @@ function extractPerfumeData() {
     if (topNotes.length === 0) {
       topNotes = extractNotes('Top');
     }
-    if (middleNotes.length === 0) {
-      middleNotes = extractNotes('Middle');
-    }
-    if (baseNotes.length === 0) {
-      baseNotes = extractNotes('Base');
+    
+    // Only check for middle and base notes if top notes were found
+    // Otherwise, we'll rely on the general notes section
+    if (topNotes.length > 0) {
+      if (middleNotes.length === 0) {
+        middleNotes = extractNotes('Middle');
+      }
+      if (baseNotes.length === 0) {
+        baseNotes = extractNotes('Base');
+      }
     }
     
     // Extract general notes for all fragrances, whether they have specific pyramid notes or not
