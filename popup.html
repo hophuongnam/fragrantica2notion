@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fragrantica to Notion</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 350px;
+      padding: 10px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    button {
+      padding: 8px 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    input[type="text"] {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+    .success {
+      color: green;
+      font-size: 14px;
+    }
+    .info {
+      color: #0275d8;
+      font-size: 14px;
+    }
+    .hidden {
+      display: none;
+    }
+    .data-preview {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 4px;
+      max-height: 200px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+    .data-preview div {
+      margin-bottom: 5px;
+    }
+    .data-preview span {
+      font-weight: bold;
+    }
+    .settings-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .settings-status {
+      font-size: 14px;
+      margin-right: 10px;
+    }
+    .secondary-btn {
+      background-color: #6c757d;
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+    .secondary-btn:hover {
+      background-color: #5a6268;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Fragrantica to Notion</h2>
+    
+    <div class="section" id="notionSettingsCollapsed">
+      <div class="settings-header">
+        <h3>Notion Settings</h3>
+        <div class="settings-status success">Settings configured</div>
+        <button id="showSettings" class="secondary-btn">Edit Settings</button>
+      </div>
+    </div>
+    
+    <div class="section" id="notionSettings">
+      <h3>Notion Settings</h3>
+      <label for="notionApiKey">Notion API Key:</label>
+      <input type="text" id="notionApiKey" placeholder="Enter your Notion API key" />
+      
+      <label for="notionDatabaseId">Database ID:</label>
+      <input type="text" id="notionDatabaseId" placeholder="Enter your Notion database ID" />
+      
+      <button id="saveSettings">Save Settings</button>
+      <div id="settingsSavedMessage" class="success hidden">Settings saved!</div>
+    </div>
+    
+    <div class="section" id="dataExtraction">
+      <h3>Extract Perfume Data</h3>
+      <button id="extractDataBtn">Extract Data from Current Page</button>
+      <div id="extractError" class="error hidden">Error extracting data. Make sure you're on a Fragrantica perfume page.</div>
+      
+      <div id="dataPreview" class="data-preview hidden"></div>
+      
+
+      
+      <button id="saveToNotionBtn" disabled>Save to Notion</button>
+      <div id="savingStatus" class="info hidden">Saving to Notion...</div>
+      <div id="saveSuccess" class="success hidden">Successfully saved to Notion!</div>
+      <div id="saveError" class="error hidden"></div>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
